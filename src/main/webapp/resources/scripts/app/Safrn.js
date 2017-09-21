@@ -88,13 +88,13 @@ var Safrn = React.createClass({
 				{ htmlFor: 'rest_server' },
 				'REST Server IP:'
 			),
-			React.createElement('input', { type: 'text', id: 'rest_server', name: 'ip', placeholder: '127.0.0.1', onChange: this.handleInputChange }),
+			React.createElement('input', { type: 'text', id: 'rest_server', name: 'ip', placeholder: '0.0.0.0', onChange: this.handleInputChange }),
 			React.createElement(
 				'label',
 				{ htmlFor: 'rest_port' },
 				'REST Server Port:'
 			),
-			React.createElement('input', { type: 'text', id: 'rest_port', name: 'port', placeholder: '9000', onChange: this.handleInputChange }),
+			React.createElement('input', { type: 'text', id: 'rest_port', name: 'port', placeholder: '8080', onChange: this.handleInputChange }),
 			' ',
 			React.createElement('br', null),
 			React.createElement('hr', null),

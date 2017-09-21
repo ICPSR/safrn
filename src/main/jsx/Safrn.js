@@ -77,8 +77,8 @@ var Safrn = React.createClass({
 		var data = this.state.data;
 		return (
 				<div className="container-fluid">
-				<label htmlFor="rest_server">REST Server IP:</label><input type="text" id="rest_server" name="ip" placeholder = "127.0.0.1" onChange={this.handleInputChange}/> 
-				<label htmlFor="rest_port">REST Server Port:</label><input type="text" id="rest_port" name="port" placeholder = "9000" onChange={this.handleInputChange}/> <br/>
+				<label htmlFor="rest_server">REST Server IP:</label><input type="text" id="rest_server" name="ip" placeholder = "0.0.0.0" onChange={this.handleInputChange}/> 
+				<label htmlFor="rest_port">REST Server Port:</label><input type="text" id="rest_port" name="port" placeholder = "8080" onChange={this.handleInputChange}/> <br/>
 					<hr/> 
 					<form className="form-horizontal">
 						<div className="form-group">

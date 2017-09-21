@@ -1,9 +1,9 @@
 var CreateTable = React.createClass({
-	displayName: "CreateTable",
+	displayName: 'CreateTable',
 
 
 	getInitialState: function () {
-		return { data: {}, tableRowData: null, tableHeadData: null };
+		return { data: {}, tableRowData: null, tableHeadData: null, tableHeading: '', table: '' };
 	},
 
 	componentDidMount: function () {
@@ -43,11 +43,13 @@ var CreateTable = React.createClass({
 
 	createTable: function (data) {
 		if (data.iv.length == 1) {
-			this.formatData(data);
-		} else if (data.iv.length == 2) {} else if (data.iv.length == 3) {}
+			this.formatDataRow(data);
+		} else if (data.iv.length == 2) {
+			this.formatDataRowColumn(data);
+		} else if (data.iv.length == 3) {}
 	},
 
-	formatData: function (data) {
+	formatDataRow: function (data) {
 		var tableRowData = [];
 		var tableHeadData = [];
 		tableHeadData.push(data.iv[0]);
@@ -58,16 +60,47 @@ var CreateTable = React.createClass({
 		this.setState({ tableRowData: tableRowData, tableHeadData: tableHeadData });
 	},
 
+	formatDataRowColumn: function (data) {
+		var tableRowData = [];
+		var tableHeadData = [];
+		var tableHeading = data.iv[1];
+
+		var headerSet = new Set();
+		headerSet.add(data.iv[0]);
+		for (i = 0; i < data.data.length; i++) {
+			headerSet.add(data.data[i][1]);
+		}
+		var rowSet = new Set();
+		for (j = 0; j < data.data.length; j++) {
+			rowSet.add(data.data[j][0]);
+		}
+		var tableRow = [...rowSet];
+		for (x = 0; x < tableRow.length; x++) {
+			var y = tableRow[x];
+			var tableRowLine = [];
+			tableRowLine.push(y);
+			for (j = 0; j < data.data.length; j++) {
+				if (y == data.data[j][0]) {
+					tableRowLine.push(data.data[j][2]);
+				}
+			}
+			tableRowData.push(tableRowLine);
+		}
+		tableHeadData = [...headerSet];
+		this.setState({ tableRowData: tableRowData, tableHeadData: tableHeadData, tableHeading: tableHeading });
+	},
+
 	render: function () {
 		var data = this.state.data;
 		var tableHeadData = this.state.tableHeadData;
 		var tableRowData = this.state.tableRowData;
-		var theader = React.createElement("th", null);
-		var tbody = React.createElement("td", null);
+		var tableHeading = this.state.tableHeading;
+		var theader = React.createElement('th', null);
+		var tbody = React.createElement('td', null);
 		if (tableHeadData != null && tableHeadData.length > 0) {
 			theader = this.state.tableHeadData.map(function (val, i) {
 				return React.createElement(
-					"th",
+					'th',
 					null,
 					val
 				);
@@ -78,59 +111,116 @@ var CreateTable = React.createClass({
 				if (typeof val !== "undefined") {
 					if (val.length == 1) {
 						return React.createElement(
-							"tr",
+							'tr',
 							{ key: i },
 							React.createElement(
-								"td",
+								'td',
 								null,
 								val[0]
 							)
 						);
 					} else if (val.length == 2) {
 						return React.createElement(
-							"tr",
+							'tr',
 							{ key: i },
 							React.createElement(
-								"td",
+								'td',
 								null,
 								val[0]
 							),
 							React.createElement(
-								"td",
+								'td',
 								null,
 								val[1]
 							)
 						);
+					} else if (val.length > 2) {
+						if (val.length == 4) {
+							return React.createElement(
+								'tr',
+								{ key: i },
+								React.createElement(
+									'td',
+									null,
+									val[0]
+								),
+								React.createElement(
+									'td',
+									null,
+									val[1]
+								),
+								React.createElement(
+									'td',
+									null,
+									val[2]
+								),
+								React.createElement(
+									'td',
+									null,
+									val[3]
+								)
+							);
+						} else if (val.length == 5) {
+							return React.createElement(
+								'tr',
+								{ key: i },
+								React.createElement(
+									'td',
+									null,
+									val[0]
+								),
+								React.createElement(
+									'td',
+									null,
+									val[1]
+								),
+								React.createElement(
+									'td',
+									null,
+									val[2]
+								),
+								React.createElement(
+									'td',
+									null,
+									val[3]
+								),
+								React.createElement(
+									'td',
+									null,
+									val[4]
+								)
+							);
+						}
 					}
 				}
 			});
 		}
 		return React.createElement(
-			"div",
-			{ className: "container" },
+			'div',
+			{ className: 'container' },
 			React.createElement(
-				"div",
-				{ className: "table-responsive" },
+				'div',
+				{ className: 'table-responsive' },
 				React.createElement(
-					"table",
-					{ className: "table", id: "myTable" },
+					'table',
+					{ className: 'table', id: 'myTable' },
 					React.createElement(
-						"thead",
+						'thead',
 						null,
 						React.createElement(
-							"tr",
+							'tr',
 							null,
 							theader
 						)
 					),
 					React.createElement(
-						"tbody",
+						'tbody',
 						null,
 						tbody
 					)
 				)
 			),
-			" "
+			' '
 		);
 	}
 });
