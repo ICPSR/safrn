@@ -21,7 +21,7 @@ var MultipleTables = React.createClass({
 
 	componentWillReceiveProps: function(newProps){ 
 		if(this.state.data !== newProps.data){
-			this.setState({data: newProps.data}, function stateUpdate(){
+			this.setState({data: newProps.data, tableData:null}, function stateUpdate(){
 				var data = this.state.data;
 				if(typeof data !== "undefined" && typeof data.success !== "undefined"){
 					if( typeof data !== "undefined" && data.success){
