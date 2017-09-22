@@ -65,7 +65,6 @@ var Safrn = React.createClass({
 			}.bind(this),
 			error: function(xhr, status, err) {
 			  console.error(xhr, status, err);
-			  alert(err);
 			}.bind(this)
 		}); 
 	},
