@@ -3,13 +3,14 @@ var Safrn = React.createClass({
 
 
 	getInitialState: function () {
-		return { data: {}, analysis: 'freq', ip: '10.0.75.2', port: '9000', income: false,
+		return { data: {}, analysis: 'freq', ip: '', port: '', income: false,
 			s_row: '', s_col: '', s_str: '', selfquery: '', options: [] };
 	},
 
 	componentDidMount: function () {
 		if (this.isMounted()) {
 			this.loadOptions();
+			this.setState({ ip: this.props.ip, port: this.props.port });
 		}
 	},
 
@@ -79,24 +80,12 @@ var Safrn = React.createClass({
 			);
 		});
 		var data = this.state.data;
+		/*<label htmlFor="rest_server">REST Server IP:</label><input type="text" id="rest_server" name="ip" placeholder = "0.0.0.0" onChange={this.handleInputChange}/> 
+  <label htmlFor="rest_port">REST Server Port:</label><input type="text" id="rest_port" name="port" placeholder = "8080" onChange={this.handleInputChange}/> <br/>
+  	<hr/> */
 		return React.createElement(
 			'div',
 			{ className: 'container-fluid' },
-			React.createElement(
-				'label',
-				{ htmlFor: 'rest_server' },
-				'REST Server IP:'
-			),
-			React.createElement('input', { type: 'text', id: 'rest_server', name: 'ip', placeholder: '0.0.0.0', onChange: this.handleInputChange }),
-			React.createElement(
-				'label',
-				{ htmlFor: 'rest_port' },
-				'REST Server Port:'
-			),
-			React.createElement('input', { type: 'text', id: 'rest_port', name: 'port', placeholder: '8080', onChange: this.handleInputChange }),
-			' ',
-			React.createElement('br', null),
-			React.createElement('hr', null),
 			React.createElement(
 				'form',
 				{ className: 'form-horizontal' },

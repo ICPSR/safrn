@@ -29,10 +29,12 @@
 			<img src="./resources/images/StealthLogo.png" alt="Stealth Icon" width="256" height="256"></img>
 		</div>
 	</div>
-
 <div id="safrn"></div>
+
 <script type="text/javascript">
- ReactDOM.render(React.createElement(Safrn), document.getElementById('safrn'));
+var ip = "<%= application.getInitParameter("ip") %>";
+var port = "<%= application.getInitParameter("port") %>";
+ ReactDOM.render(React.createElement(Safrn, {ip:ip, port:port}), document.getElementById('safrn'));
 </script>
 </body>
 </html>
