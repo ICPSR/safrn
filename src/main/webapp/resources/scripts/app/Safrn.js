@@ -23,7 +23,7 @@ var Safrn = React.createClass({
 	},
 
 	loadOptions: function () {
-		var options = [{ "name": "None", "value": "" }, { "name": "Attrib_A", "value": "Attrib_A" }, { "name": "Attrib_B", "value": "Attrib_B" }, { "name": "Group_X", "value": "Group_X" }];
+		var options = [{ "name": "None", "value": "" }, { "name": "Sex", "value": "Attrib_A" }, { "name": "Major", "value": "Attrib_B" }, { "name": "School", "value": "Group_X" }];
 		this.setState({ options: options });
 	},
 

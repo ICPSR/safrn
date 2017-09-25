@@ -28,6 +28,9 @@
 		<div class="pull-right">
 			<img src="./resources/images/StealthLogo.png" alt="Stealth Icon" width="256" height="256"></img>
 		</div>
+		<div class="pull-right">
+			<img src="./resources/images/ljaf_logo.gif" alt="Stealth Icon" width="256" height="256"></img>
+		</div>
 	</div>
 <div id="safrn"></div>
 

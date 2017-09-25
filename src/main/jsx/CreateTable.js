@@ -1,11 +1,12 @@
 var CreateTable = React.createClass({
 	
 	getInitialState: function(){
-		return ({data:{}, tableRowData:null, tableHeadData:null, tableHeading:'', columnHeading:'', originalData:{}, originalDataUse:false});
+		return ({data:{}, tableRowData:null, tableHeadData:null, tableHeading:'', columnHeading:'', originalData:{}, originalDataUse:false, labels:[]});
 	},
 	
 	componentDidMount: function(){
 		if(this.isMounted()){
+			this.loadLabels();
 			this.setState({data:this.props.data, originalData: this.props.originalData}, function stateUpdate(){
 				var data = this.state.data;
 				var originalData = this.state.originalData;
@@ -60,6 +61,13 @@ var CreateTable = React.createClass({
 		}
 	},
 	
+	loadLabels: function(){
+		var labels = [{"name":"Attrib_A", "value":"Sex", "options":{"1": "Female","2": "Male","*":"Total"}},
+			{"name":"Attrib_B", "value":"Major","options":{"1": "Business","2": "Music","3": "English","*":"Total"}},
+			{"name":"Group_X", "value":"School","options":{"1": "Gryffindor","2": "Ravenclaw","3": "Hufflepuff","*":"Total"}}];
+		this.setState({labels:labels});
+	},
+	
 	createTable: function(data){
 		var Data = this.state.data;
 		var tableRowData = [];
@@ -80,7 +88,21 @@ var CreateTable = React.createClass({
 	formatData: function(data){
 		var formatData = [];
 		var originalData = this.state.originalData;
-		var tableHeading = originalData.iv[2] + ","+data[0][2];
+	//	var tableHeading = originalData.iv[2] + ","+data[0][2];
+		// Adding labels, if the output json contains the labels then use the above
+		var labels = this.state.labels;
+		var x={}, y= {}, z = {};
+		for(i=0; i<labels.length; i++){
+			if(labels[i].name == originalData.iv[0]){
+				x = labels[i];
+			} else if(labels[i].name == originalData.iv[1]){
+				y = labels[i];
+			} else if(labels[i].name == originalData.iv[2]){
+				z = labels[i];
+			}
+		}
+		var tableHeading = z.value+", "+ z.options[data[0][2]];
+		//
 		for (i=0; i<data.length; i++){
 			var x = data[i];
 			x.splice(2,1);
@@ -95,9 +117,21 @@ var CreateTable = React.createClass({
 		var Data = this.state.data;
 		var tableRowData = [];
 		var tableHeadData = [];
-		tableHeadData.push(Data.iv[0]);
+		//tableHeadData.push(Data.iv[0]);
+		// Adding labels, if the output json contains the labels then use the above
+		var labels = this.state.labels;
+		var y = {};
+		for(i=0; i<labels.length; i++){
+			if(labels[i].name == Data.iv[0]){
+				y = labels[i];
+			}
+		}
+		tableHeadData.push(y.value);
+		//
 		tableHeadData.push(Data.analysis);
 		for (i=0; i< data.length; i++){
+			var x = data[i][0];
+			data[i].splice(0,1,y.options[x]);
 			tableRowData.push(data[i])
 		}
 		this.setState({tableRowData:tableRowData, tableHeadData:tableHeadData});
@@ -112,24 +146,36 @@ var CreateTable = React.createClass({
 		}
 		var tableRowData = [];
 		var tableHeadData = [];
-		var columnHeading = Data.iv[1];
-		
+	//	var columnHeading = Data.iv[1];
+		// Adding labels, if the output json contains the labels then use the above
+		var labels = this.state.labels;
+		var x={}, y= {};
+		for(i=0; i<labels.length; i++){
+			if(labels[i].name == Data.iv[0]){
+				x = labels[i];
+			} else if(labels[i].name == Data.iv[1]){
+				y = labels[i];
+			} 
+		}
+		var columnHeading = y.value;
 		var headerSet = new Set();
-		headerSet.add(Data.iv[0]);
+		//headerSet.add(Data.iv[0]);
+		headerSet.add(x.value);
 		for (i=0; i< data.length; i++){
-			headerSet.add(data[i][1]);
+			headerSet.add(y.options[data[i][1]]);
 		}
 		var rowSet = new Set();
 		for(j=0; j<data.length; j++){
 			rowSet.add(data[j][0]);
 		}
 		var tableRow = [...rowSet];
-		for (x=0; x < tableRow.length; x++){
-			var y = tableRow[x];
+		for (z=0; z < tableRow.length; z++){
+			var p = tableRow[z];
 			var tableRowLine =[];
-			tableRowLine.push(y)
+		//	tableRowLine.push(y)
+			tableRowLine.push(x.options[p])
 			for(j=0; j<data.length; j++){
-				if(y == data[j][0]){
+				if(p == data[j][0]){
 					tableRowLine.push(data[j][2]);
 				}
 			}
