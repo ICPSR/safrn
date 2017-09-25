@@ -34,7 +34,7 @@ var SafrnResponse = React.createClass({
 					table = (<CreateTable data={data}/>);
 				}
 			} else {
-				info = (<div><p className="text-danger">{data.error}</p></div>);
+				info = (<div><p className="text-error">{data.error}</p></div>);
 			}
 		}
 		return (

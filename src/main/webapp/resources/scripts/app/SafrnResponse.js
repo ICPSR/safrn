@@ -41,7 +41,7 @@ var SafrnResponse = React.createClass({
 					null,
 					React.createElement(
 						"p",
-						{ className: "text-danger" },
+						{ className: "text-error" },
 						data.error
 					)
 				);
