@@ -65,7 +65,7 @@ var MultipleTables = React.createClass({
 		var tables = (<div></div>);
 		if(tableData != null && tableData !== "undefined"){
 			tables = this.state.tableData.map(function(val,i){
-				return (<div key={i}><CreateTable data={tableData[i]} originalData={data}/> </div>);
+				return (<div key={i}><CreateTable data={tableData[i]} originalData={data}/><hr/> </div>);
 			});
 		}
 		return (<div className="container">

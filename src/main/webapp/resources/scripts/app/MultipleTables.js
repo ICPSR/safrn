@@ -71,6 +71,7 @@ var MultipleTables = React.createClass({
 					"div",
 					{ key: i },
 					React.createElement(CreateTable, { data: tableData[i], originalData: data }),
+					React.createElement("hr", null),
 					" "
 				);
 			});

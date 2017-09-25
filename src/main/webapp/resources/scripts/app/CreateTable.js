@@ -82,7 +82,7 @@ var CreateTable = React.createClass({
 	formatData: function (data) {
 		var formatData = [];
 		var originalData = this.state.originalData;
-		var tableHeading = data[0][2];
+		var tableHeading = originalData.iv[2] + "," + data[0][2];
 		for (i = 0; i < data.length; i++) {
 			var x = data[i];
 			x.splice(2, 1);
