@@ -147,10 +147,10 @@ var CreateTable = React.createClass({
 		var tableHeading = this.state.tableHeading;
 		var columnHeading = this.state.columnHeading;
 		var theader = (<th></th>);
-		var tbody = (<td></td>);
+		var tbody = (<tr><td></td></tr>);
 		if(tableHeadData != null && tableHeadData.length > 0){
 			theader = this.state.tableHeadData.map(function(val,i){
-				return (<th>{val}</th>);
+				return (<th key={i}>{val}</th>);
 			});
 		}
 		if(tableRowData != null && tableRowData.length > 0){
@@ -174,7 +174,7 @@ var CreateTable = React.createClass({
 				<div className="table-responsive">
 				<p className="text-center"><b>{tableHeading}</b></p>
 				<p className="text-center">{columnHeading}</p>
-			<table className="table">
+			<table className="table table-bordered table-hover">
 			<thead><tr>{theader}</tr></thead>
 				<tbody>{tbody}</tbody>
 			</table>

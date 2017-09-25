@@ -148,12 +148,16 @@ var CreateTable = React.createClass({
 		var tableHeading = this.state.tableHeading;
 		var columnHeading = this.state.columnHeading;
 		var theader = React.createElement('th', null);
-		var tbody = React.createElement('td', null);
+		var tbody = React.createElement(
+			'tr',
+			null,
+			React.createElement('td', null)
+		);
 		if (tableHeadData != null && tableHeadData.length > 0) {
 			theader = this.state.tableHeadData.map(function (val, i) {
 				return React.createElement(
 					'th',
-					null,
+					{ key: i },
 					val
 				);
 			});
@@ -269,7 +273,7 @@ var CreateTable = React.createClass({
 				),
 				React.createElement(
 					'table',
-					{ className: 'table' },
+					{ className: 'table table-bordered table-hover' },
 					React.createElement(
 						'thead',
 						null,
