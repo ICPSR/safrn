@@ -51,11 +51,13 @@ var Safrn = React.createClass({
 	loadData: function(query){
 		var ip = this.state.ip;
 		var port = this.state.port;
+		$("#pleaseWaitDialog").modal();
 		$.ajax({
 			url: 'http://'+ip+':'+port+'/query?'+query,
 			dataType: 'json', 
 			type: 'GET',
 			success: function(data) {
+				$("#pleaseWaitDialog").modal('hide');
 			  this.setState({data:data}, function stateUpdate(){
 				 /* if(this.state.data.success){
 					  document.getElementById("s_q").innerHTML =  "<pre>"+this.state.data.data+"</pre>" + document.getElementById("s_q").innerHTML;
@@ -65,6 +67,7 @@ var Safrn = React.createClass({
 			  });
 			}.bind(this),
 			error: function(xhr, status, err) {
+			  $("#pleaseWaitDialog").modal('hide');
 			  console.error(xhr, status, err);
 			}.bind(this)
 		}); 
@@ -150,6 +153,16 @@ var Safrn = React.createClass({
 							</div>
 						</div>
 					</nav>
+					<div className="modal hide" id="pleaseWaitDialog" data-backdrop="static" data-keyboard="false">
+			        <div className="modal-header">
+			            <h1>Processing...</h1>
+			        </div>
+			        <div className="modal-body">
+			            <div className="progress progress-striped active">
+			                <div className="bar" style={{width: '100%'}}></div>
+			            </div>
+			        </div>
+			    </div>
 				
 				</div>
 		);
