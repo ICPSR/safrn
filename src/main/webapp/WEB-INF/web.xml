@@ -10,10 +10,10 @@
   
  	<context-param>
         <param-name>ip</param-name>
-        <param-value>127.0.0.1</param-value>
+        <param-value>54.197.211.51</param-value>
     </context-param>
     <context-param>
         <param-name>port</param-name>
-        <param-value>9000</param-value>
+        <param-value>8080</param-value>
     </context-param>
 </web-app>
