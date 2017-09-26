@@ -87,6 +87,24 @@ var Safrn = React.createClass({
 			'div',
 			{ className: 'container-fluid' },
 			React.createElement(
+				'div',
+				{ className: 'page-header' },
+				React.createElement(
+					'h1',
+					{ className: 'text-center' },
+					' Secure Analytics For Reticent Non-consolidated Databases (SAFRN)'
+				),
+				React.createElement(
+					'h1',
+					{ className: 'row text-center' },
+					React.createElement(
+						'small',
+						null,
+						'Statistics computed without sharing private data.'
+					)
+				)
+			),
+			React.createElement(
 				'form',
 				{ className: 'form-horizontal' },
 				React.createElement(
@@ -141,7 +159,6 @@ var Safrn = React.createClass({
 						)
 					)
 				),
-				React.createElement('br', null),
 				React.createElement(
 					'fieldset',
 					null,
@@ -160,7 +177,6 @@ var Safrn = React.createClass({
 							options
 						)
 					),
-					React.createElement('br', null),
 					React.createElement(
 						'label',
 						null,
@@ -171,7 +187,6 @@ var Safrn = React.createClass({
 							options
 						)
 					),
-					React.createElement('br', null),
 					React.createElement(
 						'label',
 						null,
@@ -182,8 +197,7 @@ var Safrn = React.createClass({
 							options
 						),
 						' '
-					),
-					React.createElement('br', null)
+					)
 				),
 				React.createElement('hr', null)
 			),
@@ -201,12 +215,39 @@ var Safrn = React.createClass({
 				'Make custom query'
 			),
 			React.createElement('br', null),
-			React.createElement('br', null),
 			React.createElement(SafrnResponse, { data: data }),
 			React.createElement('span', { id: 's_q' }),
 			React.createElement('br', null),
 			React.createElement('hr', null),
-			React.createElement('hr', null)
+			React.createElement('hr', null),
+			React.createElement(
+				'nav',
+				{ className: 'navbar navbar-default navbar-fixed-bottom' },
+				React.createElement(
+					'div',
+					{ className: 'container-fluid row' },
+					React.createElement(
+						'div',
+						{ className: 'pull-left' },
+						React.createElement('img', { src: './resources/images/ICPSR_logo_transparent.gif', alt: 'ICPSR Icon', width: '192', height: '192' })
+					),
+					React.createElement(
+						'div',
+						{ className: 'pull-left' },
+						React.createElement('img', { src: './resources/images/StealthLogo.png', alt: 'Stealth Icon', width: '192', height: '192' })
+					),
+					React.createElement(
+						'div',
+						{ className: 'pull-right' },
+						React.createElement(
+							'p',
+							null,
+							'SAFRN is supported by',
+							React.createElement('img', { src: './resources/images/ljaf_logo.gif', alt: 'Stealth Icon', width: '192', height: '192' })
+						)
+					)
+				)
+			)
 		);
 	}
 });

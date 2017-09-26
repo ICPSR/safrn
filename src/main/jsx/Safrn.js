@@ -80,6 +80,10 @@ var Safrn = React.createClass({
 			<hr/> */
 		return (
 				<div className="container-fluid">
+				<div className="page-header">
+				 <h1 className="text-center"> Secure Analytics For Reticent Non-consolidated Databases (SAFRN)</h1>
+				 <h1 className="row text-center"><small>Statistics computed without sharing private data.</small></h1>
+				</div>
 					<form className="form-horizontal">
 						<div className="form-group">
 							<fieldset>
@@ -105,18 +109,18 @@ var Safrn = React.createClass({
 								</label>
 							</div>
 						</fieldset>
-							<br/>
+
 						<fieldset>
 							<legend>Independent Variables: </legend>
 							  <label>Variable 1 (Row): <select name="s_row" id="s_row" onChange={this.handleInputChange}>
 							    {options}
-							  </select></label><br/>
+							  </select></label>
 							  <label>Variable 2 (Column): <select name="s_col" id="s_col" onChange={this.handleInputChange}>
 							  {options}
-							  </select></label><br/>
+							  </select></label>
 							 <label> Variable 3 (Stratum): <select name="s_str" id="s_str" onChange={this.handleInputChange}>
 							 {options}
-							  </select> </label><br/>
+							  </select> </label>
 						 </fieldset>
 						<hr/>
 	
@@ -125,14 +129,28 @@ var Safrn = React.createClass({
 	
 					<br/>
 					<input type="text" id="selfquery" name="selfquery" placeholder="/query?" onChange={this.handleInputChange}/>
-					<button id="b_s" onClick={this.makeCustomQuery}>Make custom query</button><br/>
+					<button id="b_s" onClick={this.makeCustomQuery}>Make custom query</button>
 					<br/>
 					<SafrnResponse data={data}/>
 					<span id="s_q"></span><br/>
 					<hr/>
 	
 					<hr/>
-					
+					<nav className="navbar navbar-default navbar-fixed-bottom">
+						<div className="container-fluid row">
+							<div className="pull-left">
+								<img src="./resources/images/ICPSR_logo_transparent.gif" alt="ICPSR Icon" width="192" height="192"></img>
+							</div>
+							<div className="pull-left">
+								<img src="./resources/images/StealthLogo.png" alt="Stealth Icon" width="192" height="192"></img>
+							</div>
+							<div className="pull-right">
+								<p>SAFRN is supported by 
+								<img src="./resources/images/ljaf_logo.gif" alt="Stealth Icon" width="192" height="192"></img></p>
+							</div>
+						</div>
+					</nav>
+				
 				</div>
 		);
 	}

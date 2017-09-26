@@ -32,7 +32,7 @@ var CreateTable = React.createClass({
 
 	componentWillReceiveProps: function(newProps){ 
 		if(this.state.data !== newProps.data){
-			this.setState({data: newProps.data, originalData: newProps.OriginalData}, function stateUpdate(){
+			this.setState({data: newProps.data, originalData: newProps.OriginalData, columnHeading:''}, function stateUpdate(){
 				var data = this.state.data;
 				var tableRowData = [];
 				var tableHeadData = [];
@@ -219,7 +219,7 @@ var CreateTable = React.createClass({
 		return (<div className="container">
 				<div className="table-responsive">
 				<p className="text-center"><b>{tableHeading}</b></p>
-				<p className="text-center">{columnHeading}</p>
+				<p className="text-center"><b>{columnHeading}</b></p>
 			<table className="table table-bordered table-hover">
 			<thead><tr>{theader}</tr></thead>
 				<tbody>{tbody}</tbody>

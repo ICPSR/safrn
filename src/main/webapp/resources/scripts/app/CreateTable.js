@@ -34,7 +34,7 @@ var CreateTable = React.createClass({
 
 	componentWillReceiveProps: function (newProps) {
 		if (this.state.data !== newProps.data) {
-			this.setState({ data: newProps.data, originalData: newProps.OriginalData }, function stateUpdate() {
+			this.setState({ data: newProps.data, originalData: newProps.OriginalData, columnHeading: '' }, function stateUpdate() {
 				var data = this.state.data;
 				var tableRowData = [];
 				var tableHeadData = [];
@@ -316,7 +316,11 @@ var CreateTable = React.createClass({
 				React.createElement(
 					'p',
 					{ className: 'text-center' },
-					columnHeading
+					React.createElement(
+						'b',
+						null,
+						columnHeading
+					)
 				),
 				React.createElement(
 					'table',

@@ -20,20 +20,7 @@
 	
 </head>
 <body>
-
-	<div class="container-fluid row">
-		<div class="pull-left">
-			<img src="./resources/images/ICPSR_logo_transparent.gif" alt="ICPSR Icon" width="256" height="256"></img>
-		</div>
-		<div class="pull-right">
-			<img src="./resources/images/StealthLogo.png" alt="Stealth Icon" width="256" height="256"></img>
-		</div>
-		<div class="pull-right">
-			<img src="./resources/images/ljaf_logo.gif" alt="Stealth Icon" width="256" height="256"></img>
-		</div>
-	</div>
 <div id="safrn"></div>
-
 <script type="text/javascript">
 var ip = "<%= application.getInitParameter("ip") %>";
 var port = "<%= application.getInitParameter("port") %>";
