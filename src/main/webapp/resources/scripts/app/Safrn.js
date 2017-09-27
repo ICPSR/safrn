@@ -4,7 +4,7 @@ var Safrn = React.createClass({
 
 	getInitialState: function () {
 		return { data: {}, analysis: 'freq', ip: '', port: '', income: false,
-			s_row: '', s_col: '', s_str: '', selfquery: '', options: [] };
+			s_row: '', s_col: '', s_str: '', selfquery: '', options: [], errorMsgCol: '', errorMsgStr: '' };
 	},
 
 	componentDidMount: function () {
@@ -49,6 +49,25 @@ var Safrn = React.createClass({
 		this.loadData(mainquery);
 	},
 
+	validateRowColStr: function () {
+		var s_row = this.state.s_row;
+		var s_col = this.state.s_col;
+		var s_str = this.state.s_str;
+		var response = true;
+		this.setState({ errorMsgCol: '', errorMsgStr: '' });
+		if (s_col !== "" && s_row == "") {
+			response = false;
+			this.setState({ errorMsgCol: 'Please select the row value' });
+		}
+		if (s_str != "" && s_col == "" || s_str != "" && s_row == "") {
+			response = false;
+			this.setState({ errorMsgStr: 'Please select the row and column values ' });
+		}
+		if (response) {
+			this.makeQuery();
+		}
+	},
+
 	loadData: function (query) {
 		var ip = this.state.ip;
 		var port = this.state.port;
@@ -83,9 +102,15 @@ var Safrn = React.createClass({
 			);
 		});
 		var data = this.state.data;
+		var errorMsgCol = this.state.errorMsgCol;
+		var errorMsgStr = this.state.errorMsgStr;
 		/*<label htmlFor="rest_server">REST Server IP:</label><input type="text" id="rest_server" name="ip" placeholder = "0.0.0.0" onChange={this.handleInputChange}/> 
   <label htmlFor="rest_port">REST Server Port:</label><input type="text" id="rest_port" name="port" placeholder = "8080" onChange={this.handleInputChange}/> <br/>
-  	<hr/> */
+  	<hr/> 
+  			<input type="text" id="selfquery" name="selfquery" placeholder="/query?" onChange={this.handleInputChange}/>
+  			<button id="b_s" onClick={this.makeCustomQuery}>Make custom query</button>
+  			<br/>
+  	*/
 		return React.createElement(
 			'div',
 			{ className: 'container-fluid' },
@@ -190,6 +215,12 @@ var Safrn = React.createClass({
 							options
 						)
 					),
+					' ',
+					React.createElement(
+						'p',
+						{ className: 'text-error' },
+						errorMsgCol
+					),
 					React.createElement(
 						'label',
 						null,
@@ -200,23 +231,21 @@ var Safrn = React.createClass({
 							options
 						),
 						' '
+					),
+					React.createElement(
+						'p',
+						{ className: 'text-error' },
+						errorMsgStr
 					)
 				),
 				React.createElement('hr', null)
 			),
 			React.createElement(
 				'button',
-				{ id: 'b_q', onClick: this.makeQuery },
+				{ id: 'b_q', onClick: this.validateRowColStr },
 				'Submit'
 			),
 			React.createElement('br', null),
-			React.createElement('br', null),
-			React.createElement('input', { type: 'text', id: 'selfquery', name: 'selfquery', placeholder: '/query?', onChange: this.handleInputChange }),
-			React.createElement(
-				'button',
-				{ id: 'b_s', onClick: this.makeCustomQuery },
-				'Make custom query'
-			),
 			React.createElement('br', null),
 			React.createElement(SafrnResponse, { data: data }),
 			React.createElement('span', { id: 's_q' }),
