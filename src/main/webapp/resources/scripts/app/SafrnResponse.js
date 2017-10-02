@@ -36,15 +36,7 @@ var SafrnResponse = React.createClass({
 					table = React.createElement(CreateTable, { data: data });
 				}
 			} else {
-				info = React.createElement(
-					"div",
-					null,
-					React.createElement(
-						"p",
-						{ className: "text-error" },
-						data.error
-					)
-				);
+				info = React.createElement(ErrorMessage, { errorMsg: data.error });
 			}
 		}
 		return React.createElement(

@@ -16,6 +16,7 @@
 	<script src="./resources/scripts/app/SafrnResponse.js"></script>
 	<script src="./resources/scripts/app/CreateTable.js"></script>
 	<script src="./resources/scripts/app/MultipleTables.js"></script>
+	<script src="./resources/scripts/app/ErrorMessage.js"></script>
 
 	
 </head>

@@ -76,6 +76,7 @@ var Safrn = React.createClass({
 			dataType: 'json', 
 			type: 'GET',
 			success: function(data) {
+			//	setTimeout(function() { $('#pleaseWaitDialog').modal('hide'); }, 1000);
 				$("#pleaseWaitDialog").modal('hide');
 			  this.setState({data:data}, function stateUpdate(){
 				 /* if(this.state.data.success){
@@ -86,6 +87,7 @@ var Safrn = React.createClass({
 			  });
 			}.bind(this),
 			error: function(xhr, status, err) {
+			//	setTimeout(function() { $('#pleaseWaitDialog').modal('hide'); }, 1000);
 			  $("#pleaseWaitDialog").modal('hide');
 			  console.error(xhr, status, err);
 			}.bind(this)

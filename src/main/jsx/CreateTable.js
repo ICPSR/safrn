@@ -12,13 +12,7 @@ var CreateTable = React.createClass({
 				var originalData = this.state.originalData;
 				if(typeof data !== "undefined" && typeof data.success !== "undefined"){
 					if(data.success){
-						if( typeof data.iv !== "undefined"){
-							 if (data.iv.length > 0 && data.iv.length < 3){
-								this.createTable(data.data);
-							} 
-						} else {
-							this.createTable(data.data);
-						}
+						this.createTable(data.data);
 					}
 				}
 				if(typeof originalData !== "undefined" && typeof originalData.success !== "undefined"){
@@ -34,22 +28,9 @@ var CreateTable = React.createClass({
 		if(this.state.data !== newProps.data){
 			this.setState({data: newProps.data, originalData: newProps.OriginalData, columnHeading:''}, function stateUpdate(){
 				var data = this.state.data;
-				var tableRowData = [];
-				var tableHeadData = [];
-				if(typeof data.iv === "undefined"){
-					tableHeadData.push(data.analysis);
-					tableRowData.push(data.data);
-					this.setState({tableHeadData:tableHeadData, tableRowData:tableRowData});
-				}
 				if(typeof data !== "undefined" && typeof data.success !== "undefined"){
 					if(data.success){
-						if( typeof data.iv !== "undefined"){
-							 if (data.iv.length > 0 && data.iv.length < 3){
-								this.createTable(data.data);
-							}
-						} else {
-							this.createTable(data.data);
-						}
+						this.createTable(data.data);
 					}
 				}
 				if(typeof originalData !== "undefined" && typeof originalData.success !== "undefined"){
@@ -79,7 +60,7 @@ var CreateTable = React.createClass({
 				this.formatDataRowColumn(data);
 			} 
 		} else {
-			tableRowData.push(data);
+			tableRowData.push(this.formatValue(data));
 			tableHeadData.push(Data.analysis);
 			this.setState({tableRowData:tableRowData, tableHeadData:tableHeadData});
 		}	
@@ -132,7 +113,7 @@ var CreateTable = React.createClass({
 		for (i=0; i< data.length; i++){
 			var x = data[i][0];
 			data[i].splice(0,1,y.options[x]);
-			tableRowData.push(data[i])
+			tableRowData.push(this.formatValue(data[i]));
 		}
 		this.setState({tableRowData:tableRowData, tableHeadData:tableHeadData});
 	},
@@ -179,10 +160,35 @@ var CreateTable = React.createClass({
 					tableRowLine.push(data[j][2]);
 				}
 			}
-			tableRowData.push(tableRowLine);
+			tableRowData.push(this.formatValue(tableRowLine));
 		}
 		tableHeadData = [...headerSet];
 		this.setState({tableRowData:tableRowData, tableHeadData:tableHeadData, columnHeading:columnHeading});
+	},
+	
+	formatValue: function(data){
+		var Data = '';
+		if(this.state.originalDataUse){
+			Data = this.state.originalData;
+		} else {
+			Data = this.state.data;
+		}
+		if(Data.analysis == "mean"){
+			if (typeof Data.iv !== "undefined"){
+				if(Data.iv.length == 1){
+					data[1] = data[1].toFixed(2);
+				} else if (Data.iv.length > 1){
+					for (i=1; i<data.length; i++){
+						if(data[i] != null){
+							data[i] = data[i].toFixed(2);
+						}
+					}
+				}
+			} else {
+				data[0] = data[0].toFixed(2);
+			}
+		}
+		return data;
 	},
 	
 
