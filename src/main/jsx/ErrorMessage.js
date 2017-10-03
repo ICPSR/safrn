@@ -26,15 +26,16 @@ var ErrorMessage = React.createClass({
 		message = message.replace("Attrib_A","Sex");
 		message = message.replace("Attrib_B","Major");
 		message = message.replace("Group_X","School");
-		message = message.replace("iv","Independent Variable");
-		message = message.replace("dv","Dependent Variable");
+		message = message.replace("iv","independent variable");
+		message = message.replace("dv","dependent variable");
+		message = message.replace("ERROR: Need dependent variable for mean analysis","ERROR: Please select a dependent variable for computing means");
 		this.setState({message:message});
 	},
 	
 	render: function(){
 		var message = this.state.message;
 		return (<div>
-		<p className="text-error">{message}</p>
+		<h3><p className="text-error"><b>{message}</b></p></h3>
 		</div>);
 	}
 	
