@@ -17,13 +17,15 @@
 	<script src="./resources/scripts/app/CreateTable.js"></script>
 	<script src="./resources/scripts/app/MultipleTables.js"></script>
 	<script src="./resources/scripts/app/ErrorMessage.js"></script>
-	<script src="./resources/scripts/app/datatable.js"></script>
+	<script src="./resources/scripts/app/InfoTable.js"></script>
 	<script src="./resources/scripts/Datatables/datatables.min.js"></script>
 	<link href="./resources/scripts/Datatables/datatables.min.css" rel="stylesheet" />
-	<script src="<c:url value="./resources/scripts/Datatables/Buttons/js/buttons.jqueryui.min.js" />"></script>
-<script src="<c:url value="./resources/scripts/Datatables/Buttons/js/buttons.html5.min.js" />"></script>
-<script src="<c:url value="./resources/scripts/Datatables/Buttons/js/buttons.colVis.min.js" />"></script>
-<script src="<c:url value="./resources/scripts/Datatables/Buttons/js/buttons.print.min.js" />"></script>
+	<script src="./resources/scripts/Datatables/Buttons/js/dataTables.buttons.min.js"></script>
+	<link href="./resources/scripts/Datatables/Buttons/css/buttons.dataTables.min.css" rel="stylesheet" />
+	<script src="./resources/scripts/Datatables/Buttons/js/buttons.jqueryui.min.js"></script>
+	<script src="./resources/scripts/Datatables/Buttons/js/buttons.html5.min.js"></script>
+	<script src="./resources/scripts/Datatables/Buttons/js/buttons.colVis.min.js"></script>
+	<script src="./resources/scripts/Datatables/Buttons/js/buttons.print.min.js"></script>
 
 	
 </head>
