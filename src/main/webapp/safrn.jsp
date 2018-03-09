@@ -17,6 +17,7 @@
 	<script src="./resources/scripts/app/CreateTable.js"></script>
 	<script src="./resources/scripts/app/MultipleTables.js"></script>
 	<script src="./resources/scripts/app/ErrorMessage.js"></script>
+	<script src="./resources/scripts/app/SafrnDemo.js"></script>
 	<script src="./resources/scripts/app/InfoTable.js"></script>
 	<script src="./resources/scripts/Datatables/datatables.min.js"></script>
 	<link href="./resources/scripts/Datatables/datatables.min.css" rel="stylesheet" />
@@ -34,7 +35,7 @@
 <script type="text/javascript">
 var ip = "<%= application.getInitParameter("ip") %>";
 var port = "<%= application.getInitParameter("port") %>";
- ReactDOM.render(React.createElement(Safrn, {ip:ip, port:port}), document.getElementById('safrn'));
+ ReactDOM.render(React.createElement(SafrnDemo, {ip:ip, port:port}), document.getElementById('safrn'));
 </script>
 </body>
 </html>
