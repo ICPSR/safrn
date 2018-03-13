@@ -22,6 +22,23 @@ var SafrnDemo = React.createClass({
 		this.setState({ [name]: value });
 	},
 
+	changeValue: function (event) {
+		var radioId = event.target.id;
+		var value = "N";
+		var selectedValue = event.target.value;
+		/*if(event.target.checked == true){
+  	value = "Y";
+  }
+  if(radioId == "School" && value == "Y"){
+  	selectedValue="School";
+  } else if (radioId == "Degree" && value == "Y"){
+  	selectedValue="Degree";
+  } else if (radioId == "DegreeSchool" && value == "Y"){
+  	selectedValue="School+Degree";
+  } */
+		this.setState({ s_row: selectedValue });
+	},
+
 	loadOptions: function () {
 		var options = [{ "name": "None", "value": "" }, { "name": "School", "value": "School" }, { "name": "Degree", "value": "Degree" }, { "name": "Degree by School", "value": "School+Degree" }];
 		this.setState({ options: options });
@@ -115,22 +132,48 @@ var SafrnDemo = React.createClass({
 				'form',
 				{ className: 'form-horizontal' },
 				React.createElement(
-					'fieldset',
+					'legend',
 					null,
-					React.createElement(
-						'legend',
-						null,
-						'Please select: '
-					),
+					'Please select type: '
+				),
+				React.createElement(
+					'div',
+					{ className: 'radio' },
 					React.createElement(
 						'label',
 						null,
-						'Type: ',
-						React.createElement(
-							'select',
-							{ name: 's_row', id: 's_row', onChange: this.handleInputChange },
-							options
-						)
+						React.createElement('input', { type: 'radio', name: 'radioOptions', id: 'None', value: '', checked: this.state.s_row === "", onChange: this.changeValue }),
+						'None'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'radio' },
+					React.createElement(
+						'label',
+						null,
+						React.createElement('input', { type: 'radio', name: 'radioOptions', id: 'School', value: 'School', onChange: this.changeValue }),
+						'School'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'radio' },
+					React.createElement(
+						'label',
+						null,
+						React.createElement('input', { type: 'radio', name: 'radioOptions', id: 'Degree', value: 'Degree', onChange: this.changeValue }),
+						'Degree'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'radio' },
+					React.createElement(
+						'label',
+						null,
+						React.createElement('input', { type: 'radio', name: 'radioOptions', id: 'DegreeSchool', value: 'School+Degree', onChange: this.changeValue }),
+						'Degree by School'
 					)
 				),
 				React.createElement('hr', null)
@@ -146,8 +189,8 @@ var SafrnDemo = React.createClass({
 			React.createElement('hr', null),
 			React.createElement('hr', null),
 			React.createElement(
-				'nav',
-				{ className: 'navbar navbar-default navbar-fixed-bottom' },
+				'footer',
+				null,
 				React.createElement(
 					'div',
 					{ className: 'container-fluid row' },

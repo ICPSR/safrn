@@ -20,6 +20,23 @@ var SafrnDemo = React.createClass({
 	    this.setState({ [name]: value});
 	},
 	
+	changeValue: function(event){
+		var radioId = event.target.id;
+		var value = "N";
+		var selectedValue=event.target.value;
+		/*if(event.target.checked == true){
+			value = "Y";
+		}
+		if(radioId == "School" && value == "Y"){
+			selectedValue="School";
+		} else if (radioId == "Degree" && value == "Y"){
+			selectedValue="Degree";
+		} else if (radioId == "DegreeSchool" && value == "Y"){
+			selectedValue="School+Degree";
+		} */
+		this.setState({s_row:selectedValue})
+	},
+	
 	loadOptions: function(){
 		var options = [{"name":"None","value":""},{"name":"School","value":"School"},{"name":"Degree", "value":"Degree"},
 			{"name":"Degree by School", "value":"School+Degree"}];
@@ -94,13 +111,31 @@ var SafrnDemo = React.createClass({
 				 <h1 className="row text-center"><small>Statistics computed without sharing private data.</small></h1>
 				</div>
 					<form className="form-horizontal">
-
-						<fieldset>
-							<legend>Please select: </legend>
-							  <label>Type: <select name="s_row" id="s_row" onChange={this.handleInputChange}>
-							    {options}
-							  </select></label> 
-						 </fieldset>
+					<legend>Please select type: </legend>
+					 <div className="radio">
+			          <label>
+			            <input type="radio" name="radioOptions" id="None" value="" checked={this.state.s_row === ""} onChange={this.changeValue}/>
+			            None
+			          </label>
+			        </div>
+			        <div className="radio">
+			          <label>
+			            <input type="radio" name="radioOptions" id="School" value="School" onChange={this.changeValue}/>
+			            School
+			          </label>
+			        </div>
+			        <div className="radio">
+			          <label>
+			            <input type="radio" name="radioOptions" id="Degree" value="Degree" onChange={this.changeValue}/>
+			            Degree
+			          </label>
+			        </div>
+			        <div className="radio">
+			          <label>
+			            <input type="radio" name="radioOptions" id="DegreeSchool" value="School+Degree" onChange={this.changeValue}/>
+			            Degree by School
+			          </label>
+			        </div>
 						<hr/>
 	
 					 </form>
@@ -111,7 +146,7 @@ var SafrnDemo = React.createClass({
 					<hr/>
 	
 					<hr/>
-					<nav className="navbar navbar-default navbar-fixed-bottom">
+					<footer>
 						<div className="container-fluid row">
 							<div className="pull-left">
 								<img src="./resources/images/ICPSR_logo_transparent.gif" alt="ICPSR Icon" width="192" height="192"></img>
@@ -124,7 +159,8 @@ var SafrnDemo = React.createClass({
 								<img src="./resources/images/ljaf_logo.gif" alt="Stealth Icon" width="192" height="192"></img></p>
 							</div>
 						</div>
-					</nav>
+					
+					</footer>
 					<div className="modal hide" id="pleaseWaitDialog" data-backdrop="static" data-keyboard="false">
 			        <div className="modal-header">
 			            <h1>Processing...</h1>
