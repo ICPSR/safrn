@@ -25,7 +25,7 @@ var InfoTable = React.createClass({
 				});
 			}
 		} else {
-			this.setState({ data: [] });
+			this.setState({ data: [], incomeData: {}, loanData: {} });
 		}
 	},
 
