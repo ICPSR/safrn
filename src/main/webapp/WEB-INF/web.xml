@@ -10,7 +10,7 @@
   
  	<context-param>
         <param-name>ip</param-name>
-        <param-value>34.198.35.30</param-value>
+        <param-value>safrn.icpsr.umich.edu</param-value>
     </context-param>
     <context-param>
         <param-name>port</param-name>

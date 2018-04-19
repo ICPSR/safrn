@@ -63,7 +63,7 @@ var SafrnDemo = React.createClass({
 		var port = this.state.port;
 		$("#pleaseWaitDialog").modal();
 		$.ajax({
-			url: 'http://54.198.122.48:8080/query?'+query,
+			url: 'http://'+ip+':8080/query?'+query,
 			dataType: 'json', 
 			type: 'GET',
 			success: function(data) {
@@ -83,7 +83,7 @@ var SafrnDemo = React.createClass({
 		var port = this.state.port;
 		$("#pleaseWaitDialog").modal();
 		$.ajax({
-			url: 'http://54.198.122.48:8081/query?'+query,
+			url: 'http://'+ip+':8081/query?'+query,
 			dataType: 'json', 
 			type: 'GET',
 			success: function(data) {
