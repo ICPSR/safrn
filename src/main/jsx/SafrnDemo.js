@@ -2,7 +2,7 @@ var SafrnDemo = React.createClass({
 	
 	getInitialState: function(){
 		return ({incomeData:{}, loanData:{}, analysis:'mean', ip:'', port:'',
-				s_row:'', selfquery:'',options:[]});
+				s_row:'', loanComputeTime:"", incomeComputeTime:"", selfquery:'',options:[]});
 	},
 	
 	componentDidMount: function(){
@@ -61,6 +61,7 @@ var SafrnDemo = React.createClass({
 	loadIncomeData: function(query){
 		var ip = this.state.ip;
 		var port = this.state.port;
+		var start_time = new Date().getTime();
 		$("#pleaseWaitDialog").modal();
 		$.ajax({
 			url: 'http://'+ip+':8080/query?'+query,
@@ -68,7 +69,8 @@ var SafrnDemo = React.createClass({
 			type: 'GET',
 			success: function(data) {
 				$("#pleaseWaitDialog").modal('hide');
-			  this.setState({incomeData:data}, function stateUpdate(){
+				var request_time = new Date().getTime() - start_time;
+			  this.setState({incomeData:data, incomeComputeTime:"Total time to compute Income data: "+(request_time/1000).toFixed(2) + " seconds for "+this.state.s_row}, function stateUpdate(){
 			  });
 			}.bind(this),
 			error: function(xhr, status, err) {
@@ -81,6 +83,7 @@ var SafrnDemo = React.createClass({
 	loadLoanData: function(query){
 		var ip = this.state.ip;
 		var port = this.state.port;
+		var start_time = new Date().getTime();
 		$("#pleaseWaitDialog").modal();
 		$.ajax({
 			url: 'http://'+ip+':8081/query?'+query,
@@ -88,7 +91,8 @@ var SafrnDemo = React.createClass({
 			type: 'GET',
 			success: function(data) {
 				$("#pleaseWaitDialog").modal('hide');
-			  this.setState({loanData:data}, function stateUpdate(){
+				var request_time = new Date().getTime() - start_time;
+			  this.setState({loanData:data, loanComputeTime:"Total time to compute Loan data: "+(request_time/1000).toFixed(2)+ " seconds for "+this.state.s_row}, function stateUpdate(){
 			  });
 			}.bind(this),
 			error: function(xhr, status, err) {
@@ -97,13 +101,15 @@ var SafrnDemo = React.createClass({
 			}.bind(this)
 		}); 
 	},
-	
+
 	render: function(){	
 		var options = this.state.options.map(function(val, i){
 			return (<option key={i} value={val.value}>{val.name}</option>);
 		});
 		var incomeData = this.state.incomeData;
 		var loanData = this.state.loanData;
+		var loanComputeTime = this.state.loanComputeTime;
+		var incomeComputeTime = this.state.incomeComputeTime;
 		return (
 				<div className="container-fluid">
 				<div className="page-header">
@@ -144,7 +150,9 @@ var SafrnDemo = React.createClass({
 					<br/>
 					<InfoTable incomeData={incomeData} loanData={loanData} />
 					<hr/>
-	
+					<legend>Timings: </legend>
+					{loanComputeTime}<br/>
+					{incomeComputeTime}
 					<hr/>
 					<footer>
 						<div className="container-fluid row">
