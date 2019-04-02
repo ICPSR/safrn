@@ -82,8 +82,6 @@ var InfoTable = React.createClass({
 			var income2 = data[i][3];
 			var income3 = data[i][4];
 			var income10 = data[i][5];
-			data[i].splice(0,1,schoolNames.options[x]);
-			data[i].splice(1,1,degreeNames.options[y]);
 			data[i].splice(2,1,loan.toFixed(2));
 			data[i].splice(3,1,income2.toFixed(2));
 			data[i].splice(4,1,income3.toFixed(2));
@@ -116,13 +114,22 @@ var InfoTable = React.createClass({
 		var table = (<div></div>);
 		if (data.length > 0){
 			table = (<div className="row">
-			<table className="table table-hover" id="infoTable">
-			<thead><tr><th scope="col">Institution</th><th scope="col">Degree</th><th scope="col">Average Loan</th><th scope="col">Average Income 2 years after graduation</th><th scope="col">Average Income 3 years after graduation</th><th scope="col">Average Income 10 years after graduation</th></tr></thead>
+			<table className="table table-hover" id="infoTable"  style={{width:"100%"}}>
+			<thead>
+			<tr>
+			<th scope="col">Institution</th>
+			<th scope="col">Degree</th>
+			<th scope="col">Average Loan</th>
+			<th scope="col">Average Income 2 years after graduation</th>
+			<th scope="col">Average Income 3 years after graduation</th>
+			<th scope="col">Average Income 10 years after graduation</th>
+			</tr>
+			</thead>
 			<tbody></tbody></table>
 			</div>);
 		}
 		return(
-				<div className="container-fluid">
+				<div className="container">
 				<br/>
 				{table}
 		</div>

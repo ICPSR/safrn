@@ -49,10 +49,12 @@ var SafrnDemo = React.createClass({
 			var incomequery = "analysis=" + this.state.analysis;
 			incomequery += "&dv=Income2+Income3+Income10";
 			incomequery += "&iv=" + this.state.s_row;
+			incomequery += "&countonlymean=1";
 			this.loadIncomeData(incomequery);
 			var loanquery = "analysis=" + this.state.analysis;
 			loanquery += "&dv=Max_Loan";
 			loanquery += "&iv=" + this.state.s_row;
+			loanquery += "&countonlymean=0&loanlink=1";
 			this.loadLoanData(loanquery);
 		} else {
 			this.setState({ incomeData: {}, loanData: {} });

@@ -80,8 +80,6 @@ var InfoTable = React.createClass({
 			var income2 = data[i][3];
 			var income3 = data[i][4];
 			var income10 = data[i][5];
-			data[i].splice(0, 1, schoolNames.options[x]);
-			data[i].splice(1, 1, degreeNames.options[y]);
 			data[i].splice(2, 1, loan.toFixed(2));
 			data[i].splice(3, 1, income2.toFixed(2));
 			data[i].splice(4, 1, income3.toFixed(2));
@@ -111,7 +109,7 @@ var InfoTable = React.createClass({
 				{ className: "row" },
 				React.createElement(
 					"table",
-					{ className: "table table-hover", id: "infoTable" },
+					{ className: "table table-hover", id: "infoTable", style: { width: "100%" } },
 					React.createElement(
 						"thead",
 						null,
@@ -156,7 +154,7 @@ var InfoTable = React.createClass({
 		}
 		return React.createElement(
 			"div",
-			{ className: "container-fluid" },
+			{ className: "container" },
 			React.createElement("br", null),
 			table
 		);
