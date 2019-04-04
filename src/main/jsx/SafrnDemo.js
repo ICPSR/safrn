@@ -116,35 +116,25 @@ var SafrnDemo = React.createClass({
 				 <h1 className="text-center"> Secure Analytics For Reticent Non-consolidated Databases (SAFRN)</h1>
 				 <h1 className="row text-center"><small>Statistics computed without sharing private data.</small></h1>
 				</div>
-					<form className="form-horizontal">
 					<legend>Please select type: </legend>
-					 <div className="radio">
-			          <label>
+			          <label className="radio-inline control-label">
 			            <input type="radio" name="radioOptions" id="None" value="" checked={this.state.s_row === ""} onChange={this.changeValue}/>
 			            None
 			          </label>
-			        </div>
-			        <div className="radio">
-			          <label>
+			          <label  className="radio-inline control-label">
 			            <input type="radio" name="radioOptions" id="School" value="School" onChange={this.changeValue}/>
 			            School
 			          </label>
-			        </div>
-			        <div className="radio">
-			          <label>
+			          <label  className="radio-inline control-label">
 			            <input type="radio" name="radioOptions" id="Degree" value="Degree" onChange={this.changeValue}/>
 			            Degree
 			          </label>
-			        </div>
-			        <div className="radio">
-			          <label>
+			          <label  className="radio-inline control-label">
 			            <input type="radio" name="radioOptions" id="DegreeSchool" value="School+Degree" onChange={this.changeValue}/>
 			            Degree by School
 			          </label>
-			        </div>
 						<hr/>
 	
-					 </form>
 					<button id="b_q" onClick={this.makeQuery}>Submit</button><br/>
 	
 					<br/>
@@ -155,28 +145,32 @@ var SafrnDemo = React.createClass({
 					{incomeComputeTime}
 					<hr/>
 					<footer>
-						<div className="container-fluid row">
-							<div className="pull-left">
-								<img src="./resources/images/ICPSR_logo_transparent.gif" alt="ICPSR Icon" width="192" height="192"></img>
+						<div className="row">
+							<div className="col-md-2">
+								<img className="img-responsive" src="./resources/images/ICPSR_logo_transparent.gif" alt="ICPSR Icon"></img>
 							</div>
-							<div className="pull-left">
-								<img src="./resources/images/StealthLogo.png" alt="Stealth Icon" width="192" height="192"></img>
+							<div className="col-md-4">
+								<img className="img-responsive" src="./resources/images/StealthLogo.png" alt="Stealth Icon" ></img>
 							</div>
-							<div className="pull-right">
-								<p>SAFRN is supported by 
-								<img src="./resources/images/ljaf_logo.gif" alt="Stealth Icon" width="192" height="192"></img></p>
+							<div className="col-md-6">
+							<div className="span4 pull-right">
+							<p>SAFRN is supported by</p>
+								<img className="img-responsive img-right" src="./resources/images/ljaf_logo.gif" alt="Stealth Icon"></img>
+							</div>
 							</div>
 						</div>
 					
 					</footer>
-					<div className="modal hide" id="pleaseWaitDialog" data-backdrop="static" data-keyboard="false">
-			        <div className="modal-header">
-			            <h1>Processing...</h1>
-			        </div>
-			        <div className="modal-body">
-			            <div className="progress progress-striped active">
-			                <div className="bar" style={{width: '100%'}}></div>
-			            </div>
+					<div className="modal" id="pleaseWaitDialog" data-backdrop="static" data-keyboard="false">
+					<div className="modal-content"> 
+				        <div className="modal-header">
+				            <h1>Processing...</h1>
+				        </div>
+				        <div className="modal-body">
+				            <div className="progress progress-striped active">
+				                <div className="progress-bar" style={{width: '100%'}}></div>
+				            </div>
+				        </div>
 			        </div>
 			    </div>
 				

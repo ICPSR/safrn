@@ -28,9 +28,9 @@ var InfoTable = React.createClass({
 	},
 	
 	loadLabels: function(){
-		var labels = [{"name":"Sex", "value":"Sex", "options":{"1": "Female","2": "Male","*":"All"}},
-			{"name":"Degree", "value":"Degree","options":{"1": "None","2": "Associate","3": "Bachelor","4": "Graduate","5": "Other","*":"All"}},
-			{"name":"School", "value":"School","options":{"1": "Gryffindor","2": "Ravenclaw","3": "Hufflepuff","4":"Slytherin","*":"All"}}];
+		var labels = [{"name":"Sex", "value":"Sex", "options":{"1": "Female","2": "Male","*":"Total"}},
+			{"name":"Degree", "value":"Degree","options":{"1": "None","2": "Associate","3": "Bachelor","4": "Graduate","5": "Other","*":"Total"}},
+			{"name":"School", "value":"School","options":{"1": "Gryffindor","2": "Ravenclaw","3": "Hufflepuff","4":"Slytherin","*":"Total"}}];
 		this.setState({labels:labels});
 	},
 	
@@ -82,6 +82,12 @@ var InfoTable = React.createClass({
 			var income2 = data[i][3];
 			var income3 = data[i][4];
 			var income10 = data[i][5];
+			if(x == "*"){
+				data[i].splice(0,1,schoolNames.options[x]);
+			}
+			if(y == "*"){
+				data[i].splice(1,1,degreeNames.options[y]);
+			}
 			data[i].splice(2,1,loan.toFixed(2));
 			data[i].splice(3,1,income2.toFixed(2));
 			data[i].splice(4,1,income3.toFixed(2));

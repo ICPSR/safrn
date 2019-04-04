@@ -135,55 +135,35 @@ var SafrnDemo = React.createClass({
 				)
 			),
 			React.createElement(
-				'form',
-				{ className: 'form-horizontal' },
-				React.createElement(
-					'legend',
-					null,
-					'Please select type: '
-				),
-				React.createElement(
-					'div',
-					{ className: 'radio' },
-					React.createElement(
-						'label',
-						null,
-						React.createElement('input', { type: 'radio', name: 'radioOptions', id: 'None', value: '', checked: this.state.s_row === "", onChange: this.changeValue }),
-						'None'
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'radio' },
-					React.createElement(
-						'label',
-						null,
-						React.createElement('input', { type: 'radio', name: 'radioOptions', id: 'School', value: 'School', onChange: this.changeValue }),
-						'School'
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'radio' },
-					React.createElement(
-						'label',
-						null,
-						React.createElement('input', { type: 'radio', name: 'radioOptions', id: 'Degree', value: 'Degree', onChange: this.changeValue }),
-						'Degree'
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'radio' },
-					React.createElement(
-						'label',
-						null,
-						React.createElement('input', { type: 'radio', name: 'radioOptions', id: 'DegreeSchool', value: 'School+Degree', onChange: this.changeValue }),
-						'Degree by School'
-					)
-				),
-				React.createElement('hr', null)
+				'legend',
+				null,
+				'Please select type: '
 			),
+			React.createElement(
+				'label',
+				{ className: 'radio-inline control-label' },
+				React.createElement('input', { type: 'radio', name: 'radioOptions', id: 'None', value: '', checked: this.state.s_row === "", onChange: this.changeValue }),
+				'None'
+			),
+			React.createElement(
+				'label',
+				{ className: 'radio-inline control-label' },
+				React.createElement('input', { type: 'radio', name: 'radioOptions', id: 'School', value: 'School', onChange: this.changeValue }),
+				'School'
+			),
+			React.createElement(
+				'label',
+				{ className: 'radio-inline control-label' },
+				React.createElement('input', { type: 'radio', name: 'radioOptions', id: 'Degree', value: 'Degree', onChange: this.changeValue }),
+				'Degree'
+			),
+			React.createElement(
+				'label',
+				{ className: 'radio-inline control-label' },
+				React.createElement('input', { type: 'radio', name: 'radioOptions', id: 'DegreeSchool', value: 'School+Degree', onChange: this.changeValue }),
+				'Degree by School'
+			),
+			React.createElement('hr', null),
 			React.createElement(
 				'button',
 				{ id: 'b_q', onClick: this.makeQuery },
@@ -207,48 +187,56 @@ var SafrnDemo = React.createClass({
 				null,
 				React.createElement(
 					'div',
-					{ className: 'container-fluid row' },
+					{ className: 'row' },
 					React.createElement(
 						'div',
-						{ className: 'pull-left' },
-						React.createElement('img', { src: './resources/images/ICPSR_logo_transparent.gif', alt: 'ICPSR Icon', width: '192', height: '192' })
+						{ className: 'col-md-2' },
+						React.createElement('img', { className: 'img-responsive', src: './resources/images/ICPSR_logo_transparent.gif', alt: 'ICPSR Icon' })
 					),
 					React.createElement(
 						'div',
-						{ className: 'pull-left' },
-						React.createElement('img', { src: './resources/images/StealthLogo.png', alt: 'Stealth Icon', width: '192', height: '192' })
+						{ className: 'col-md-4' },
+						React.createElement('img', { className: 'img-responsive', src: './resources/images/StealthLogo.png', alt: 'Stealth Icon' })
 					),
 					React.createElement(
 						'div',
-						{ className: 'pull-right' },
+						{ className: 'col-md-6' },
 						React.createElement(
-							'p',
-							null,
-							'SAFRN is supported by',
-							React.createElement('img', { src: './resources/images/ljaf_logo.gif', alt: 'Stealth Icon', width: '192', height: '192' })
+							'div',
+							{ className: 'span4 pull-right' },
+							React.createElement(
+								'p',
+								null,
+								'SAFRN is supported by'
+							),
+							React.createElement('img', { className: 'img-responsive img-right', src: './resources/images/ljaf_logo.gif', alt: 'Stealth Icon' })
 						)
 					)
 				)
 			),
 			React.createElement(
 				'div',
-				{ className: 'modal hide', id: 'pleaseWaitDialog', 'data-backdrop': 'static', 'data-keyboard': 'false' },
+				{ className: 'modal', id: 'pleaseWaitDialog', 'data-backdrop': 'static', 'data-keyboard': 'false' },
 				React.createElement(
 					'div',
-					{ className: 'modal-header' },
-					React.createElement(
-						'h1',
-						null,
-						'Processing...'
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'modal-body' },
+					{ className: 'modal-content' },
 					React.createElement(
 						'div',
-						{ className: 'progress progress-striped active' },
-						React.createElement('div', { className: 'bar', style: { width: '100%' } })
+						{ className: 'modal-header' },
+						React.createElement(
+							'h1',
+							null,
+							'Processing...'
+						)
+					),
+					React.createElement(
+						'div',
+						{ className: 'modal-body' },
+						React.createElement(
+							'div',
+							{ className: 'progress progress-striped active' },
+							React.createElement('div', { className: 'progress-bar', style: { width: '100%' } })
+						)
 					)
 				)
 			)

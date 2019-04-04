@@ -30,6 +30,19 @@
 
 	
 </head>
+<style type="text/css">
+#pleaseWaitDialog {
+   position: fixed;
+	height: 100%;
+	width: 30%;
+	top: auto;
+	left: 35%;
+	right: 65%;
+}
+.span4 .img-right {
+    float: right;
+}
+    </style>
 <body>
 <div id="safrn"></div>
 <script type="text/javascript">
