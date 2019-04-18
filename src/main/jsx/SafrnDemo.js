@@ -1,7 +1,7 @@
 var SafrnDemo = React.createClass({
 	
 	getInitialState: function(){
-		return ({incomeData:{}, loanData:{}, analysis:'mean', ip:'', port:'',
+		return ({incomeData2:{}, incomeData3:{}, incomeData10:{},  loanData:{}, analysis:'mean', ip:'', port:'',
 				s_row:'', loanComputeTime:"", incomeComputeTime:"", selfquery:'',options:[]});
 	},
 	
@@ -24,16 +24,6 @@ var SafrnDemo = React.createClass({
 		var radioId = event.target.id;
 		var value = "N";
 		var selectedValue=event.target.value;
-		/*if(event.target.checked == true){
-			value = "Y";
-		}
-		if(radioId == "School" && value == "Y"){
-			selectedValue="School";
-		} else if (radioId == "Degree" && value == "Y"){
-			selectedValue="Degree";
-		} else if (radioId == "DegreeSchool" && value == "Y"){
-			selectedValue="School+Degree";
-		} */
 		this.setState({s_row:selectedValue})
 	},
 	
@@ -45,33 +35,85 @@ var SafrnDemo = React.createClass({
 	
 	makeQuery: function(){
 		if (this.state.s_row !== "") {
-		  var incomequery = "analysis="+this.state.analysis;
-		  incomequery += "&dv=Income2+Income3+Income10"; 
-		  incomequery += "&iv="+this.state.s_row;
-		  this.loadIncomeData(incomequery);
 		  var loanquery = "analysis="+this.state.analysis;
-		  loanquery += "&dv=Max_Loan"; 
 		  loanquery += "&iv="+this.state.s_row;
+		  loanquery += "&dv=Max_Loan"; 
+		  loanquery += "&loanlink=1&countonlymean=2";
+		  
+		  var incomequery2 = "analysis="+this.state.analysis;
+		  incomequery2 += "&iv="+this.state.s_row;
+		  incomequery2 += "&dv=Income2&countonlymean=0"; 
+		  
+		  var incomequery3 = "analysis="+this.state.analysis;
+		  incomequery3 += "&iv="+this.state.s_row;
+		  incomequery3 += "&dv=Income3&countonlymean=0"; 
+		  
+		  var incomequery10 = "analysis="+this.state.analysis;
+		  incomequery10 += "&iv="+this.state.s_row;
+		  incomequery10 += "&dv=Income10&countonlymean=2"; 
+		  
+		  this.loadIncome2Data(incomequery2);
+		  this.loadIncome3Data(incomequery3);
+		  this.loadIncome10Data(incomequery10); 
 		  this.loadLoanData(loanquery);
 		} else {
-			this.setState({incomeData:{},loanData:{}});
+			this.setState({incomeData2:{}, incomeData3:{}, incomeData10:{},loanData:{}});
 		}
 	},
 	
-	loadIncomeData: function(query){
+	loadIncome2Data: function(query){
 		var ip = this.state.ip;
 		var port = this.state.port;
 		var start_time = new Date().getTime();
 		$("#pleaseWaitDialog").modal();
 		$.ajax({
-			url: 'http://'+ip+':8080/query?'+query,
+			url: 'http://'+ip+':8090/query?'+query,
+			dataType: 'json', 
+			type: 'GET',
+			success: function(data) {
+				this.setState({incomeData2:data});
+			}.bind(this),
+			error: function(xhr, status, err) {
+			  $("#pleaseWaitDialog").modal('hide');
+			  console.error(xhr, status, err);
+			}.bind(this)
+		}); 
+	},
+	
+	loadIncome3Data: function(query){
+		var ip = this.state.ip;
+		var port = this.state.port;
+		var start_time = new Date().getTime();
+		$("#pleaseWaitDialog").modal();
+		$.ajax({
+			url: 'http://'+ip+':8090/query?'+query,
+			dataType: 'json', 
+			type: 'GET',
+			success: function(data) {
+				$("#pleaseWaitDialog").modal('hide');
+				this.setState({incomeData3:data});
+			}.bind(this),
+			error: function(xhr, status, err) {
+			  $("#pleaseWaitDialog").modal('hide');
+			  console.error(xhr, status, err);
+			}.bind(this)
+		}); 
+	},
+	
+	loadIncome10Data: function(query){
+		var ip = this.state.ip;
+		var port = this.state.port;
+		var start_time = new Date().getTime();
+		$("#pleaseWaitDialog").modal();
+		$.ajax({
+			url: 'http://'+ip+':8090/query?'+query,
 			dataType: 'json', 
 			type: 'GET',
 			success: function(data) {
 				$("#pleaseWaitDialog").modal('hide');
 				var request_time = new Date().getTime() - start_time;
-			  this.setState({incomeData:data, incomeComputeTime:"Total time to compute Income data: "+(request_time/1000).toFixed(2) + " seconds for "+this.state.s_row}, function stateUpdate(){
-			  });
+				this.setState({incomeData10:data, incomeComputeTime:"Total time to compute Income data: "+(request_time/1000).toFixed(2) + " seconds for "+this.state.s_row});
+
 			}.bind(this),
 			error: function(xhr, status, err) {
 			  $("#pleaseWaitDialog").modal('hide');
@@ -86,14 +128,12 @@ var SafrnDemo = React.createClass({
 		var start_time = new Date().getTime();
 		$("#pleaseWaitDialog").modal();
 		$.ajax({
-			url: 'http://'+ip+':8081/query?'+query,
+			url: 'http://'+ip+':8091/query?'+query,
 			dataType: 'json', 
 			type: 'GET',
-			success: function(data) {
-				$("#pleaseWaitDialog").modal('hide');
+			success: function(loanData) {
 				var request_time = new Date().getTime() - start_time;
-			  this.setState({loanData:data, loanComputeTime:"Total time to compute Loan data: "+(request_time/1000).toFixed(2)+ " seconds for "+this.state.s_row}, function stateUpdate(){
-			  });
+			  this.setState({loanData:loanData, loanComputeTime:"Total time to compute Loan data: "+(request_time/1000).toFixed(2)+ " seconds for "+this.state.s_row});
 			}.bind(this),
 			error: function(xhr, status, err) {
 			  $("#pleaseWaitDialog").modal('hide');
@@ -106,7 +146,9 @@ var SafrnDemo = React.createClass({
 		var options = this.state.options.map(function(val, i){
 			return (<option key={i} value={val.value}>{val.name}</option>);
 		});
-		var incomeData = this.state.incomeData;
+		var incomeData2 = this.state.incomeData2;
+		var incomeData3 = this.state.incomeData3;
+		var incomeData10 = this.state.incomeData10;
 		var loanData = this.state.loanData;
 		var loanComputeTime = this.state.loanComputeTime;
 		var incomeComputeTime = this.state.incomeComputeTime;
@@ -138,7 +180,7 @@ var SafrnDemo = React.createClass({
 					<button id="b_q" onClick={this.makeQuery}>Submit</button><br/>
 	
 					<br/>
-					<InfoTable incomeData={incomeData} loanData={loanData} />
+					<InfoTable incomeData2={incomeData2} incomeData3={incomeData3} incomeData10={incomeData10} loanData={loanData} />
 					<hr/>
 					<legend>Timings: </legend>
 					{loanComputeTime}<br/>
