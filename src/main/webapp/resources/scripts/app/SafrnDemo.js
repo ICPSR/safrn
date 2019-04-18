@@ -30,7 +30,7 @@ var SafrnDemo = React.createClass({
 	},
 
 	loadOptions: function () {
-		var options = [{ "name": "None", "value": "" }, { "name": "School", "value": "School" }, { "name": "Degree", "value": "Degree" }, { "name": "Degree by School", "value": "School+Degree" }];
+		var options = [{ "name": "School", "value": "School" }, { "name": "Degree", "value": "Degree" }, { "name": "Degree by School", "value": "School+Degree" }];
 		this.setState({ options: options });
 	},
 
@@ -181,12 +181,6 @@ var SafrnDemo = React.createClass({
 				'legend',
 				null,
 				'Please select type: '
-			),
-			React.createElement(
-				'label',
-				{ className: 'radio-inline control-label' },
-				React.createElement('input', { type: 'radio', name: 'radioOptions', id: 'None', value: '', checked: this.state.s_row === "", onChange: this.changeValue }),
-				'None'
 			),
 			React.createElement(
 				'label',

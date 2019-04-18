@@ -28,7 +28,7 @@ var SafrnDemo = React.createClass({
 	},
 	
 	loadOptions: function(){
-		var options = [{"name":"None","value":""},{"name":"School","value":"School"},{"name":"Degree", "value":"Degree"},
+		var options = [{"name":"School","value":"School"},{"name":"Degree", "value":"Degree"},
 			{"name":"Degree by School", "value":"School+Degree"}];
 		this.setState({options:options})
 	},
@@ -159,10 +159,6 @@ var SafrnDemo = React.createClass({
 				 <h1 className="row text-center"><small>Statistics computed without sharing private data.</small></h1>
 				</div>
 					<legend>Please select type: </legend>
-			          <label className="radio-inline control-label">
-			            <input type="radio" name="radioOptions" id="None" value="" checked={this.state.s_row === ""} onChange={this.changeValue}/>
-			            None
-			          </label>
 			          <label  className="radio-inline control-label">
 			            <input type="radio" name="radioOptions" id="School" value="School" onChange={this.changeValue}/>
 			            School

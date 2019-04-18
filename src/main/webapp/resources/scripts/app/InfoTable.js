@@ -110,6 +110,13 @@ var InfoTable = React.createClass({
 			destroy: true,
 			data: this.state.data,
 			columns: [{ title: "Institution" }, { title: "Degree" }, { title: "Average Loan" }, { title: "N for Average loans" }, { title: "Average Income 2 years after graduation" }, { title: "Average Income 3 years after graduation" }, { title: "Average Income 10 years after graduation" }, { title: "N for average income" }],
+			columnDefs: [{
+				targets: [0, 1],
+				className: 'dt-left'
+			}, {
+				targets: [2, 3, 4, 5, 6, 7],
+				className: 'dt-right'
+			}],
 			buttons: ['copy', 'csv', 'print']
 		});
 		infoTable.buttons().container().insertBefore('#infoTable_filter');

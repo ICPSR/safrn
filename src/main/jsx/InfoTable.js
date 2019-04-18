@@ -115,15 +115,24 @@ var InfoTable = React.createClass({
 			destroy: true,
 			data: this.state.data,
 			columns: [
-	            { title: "Institution" },
-	            { title: "Degree" },
-	            { title: "Average Loan" },
-	            { title: "N for Average loans" },
-	            { title: "Average Income 2 years after graduation" },
-	            { title: "Average Income 3 years after graduation" },
-	            { title: "Average Income 10 years after graduation" },
-	            { title: "N for average income" }
-	        ],
+                { title: "Institution" },
+                { title: "Degree" },
+                { title: "Average Loan" },
+                { title: "N for Average loans" },
+                { title: "Average Income 2 years after graduation" },
+                { title: "Average Income 3 years after graduation" },
+                { title: "Average Income 10 years after graduation" },
+                { title: "N for average income" }
+             ],
+			columnDefs: [
+				{
+			        targets: [0,1],
+			        className: 'dt-left'
+			    },
+			    {
+			        targets: [2,3,4,5,6,7],
+			        className: 'dt-right'
+			    }],
 			buttons: ['copy','csv', 'print']
 		});
 		infoTable.buttons().container().insertBefore( '#infoTable_filter' );
@@ -138,14 +147,14 @@ var InfoTable = React.createClass({
 			<thead>
 			<tr>
 			<th scope="col">Institution</th>
-			<th scope="col">Degree</th>
-			<th scope="col">Average Loan</th>
-			<th scope="col">N for Average loans</th>
-			<th scope="col">Average Income 2 years after graduation</th>
-			<th scope="col">Average Income 3 years after graduation</th>
-			<th scope="col">Average Income 10 years after graduation</th>
-			<th scope="col">N for average income</th>
-			</tr>
+            <th scope="col">Degree</th>
+             <th scope="col">Average Loan</th>
+             <th scope="col">N for Average loans</th>
+             <th scope="col">Average Income 2 years after graduation</th>
+             <th scope="col">Average Income 3 years after graduation</th>
+             <th scope="col">Average Income 10 years after graduation</th>
+             <th scope="col">N for average income</th>
+             </tr>
 			</thead>
 			<tbody></tbody></table>
 			</div>);
